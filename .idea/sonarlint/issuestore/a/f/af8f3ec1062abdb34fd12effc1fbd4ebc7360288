@@ -1,0 +1,26 @@
+
+è
+java:S1598"ÌThis file "ClienteBancoCriteriaService.java" should be located in "com/amandaramos/service" directory, not in "/home/amanda/Documentos/ServicoBancario-main/src/main/java/com/amandaramos/service/criteria".(ÅŠ®åûÿÿÿÿ
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦×û8ç·Ñœã1
+R
+java:S22091"5Change this instance-reference to a static reference.(—­é‹8ê·Ñœã1
+W
+java:S22096"5Change this instance-reference to a static reference.(Âûğªùÿÿÿÿ8ë·Ñœã1
+R
+java:S2209:"5Change this instance-reference to a static reference.(¡¬²Ò8ë·Ñœã1
+R
+java:S2209>"5Change this instance-reference to a static reference.(è¡Ø’8ì·Ñœã1
+R
+java:S2209D"5Change this instance-reference to a static reference.(Î±ˆ·8ì·Ñœã1
+R
+java:S2209H"5Change this instance-reference to a static reference.(ô×Ñß8í·Ñœã1
+c
+java:S1128"GRemove this unused import 'javax.persistence.criteria.CriteriaBuilder'.(É¿F8ó‡èã1
+g
+java:S1128"ERemove this unused import 'javax.persistence.criteria.CriteriaQuery'.(ıŞ§ÿÿÿÿÿ8ó‡èã1
+c
+java:S1128"ARemove this unused import 'javax.persistence.criteria.Predicate'.(«úÿÿÿÿ8ó‡èã1
+Y
+java:S1128"<Remove this unused import 'javax.persistence.criteria.Root'.(ùÆšğ8ó‡èã1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8ó‡èã1

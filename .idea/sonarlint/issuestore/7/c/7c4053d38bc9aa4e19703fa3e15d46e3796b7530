@@ -1,0 +1,16 @@
+
+{
+java:S4165"`Remove this useless assignment; "id" already holds the assigned value along all execution paths.(£©èÚşÿÿÿÿ
+J
+java:S1656"/Remove or correct this useless self-assignment.(£©èÚşÿÿÿÿ
+M
+java:S1128"7Remove this unused import 'io.swagger.annotations.Api'.(·¦°Î
+V
+java:S1128"@Remove this unused import 'io.swagger.annotations.ApiOperation'.(¡šÜ
+G
+java:S1128"*Remove this unused import 'lombok.Getter'.(ùÒµÙ8Ù¼úâ1
+G
+java:S1128"*Remove this unused import 'lombok.Setter'.(ó¸çµ8Ù¼úâ1
+]
+java:S1128
+"BRemove this unused import 'javax.validation.constraints.NotBlank'.(µã‡ıÿÿÿÿ

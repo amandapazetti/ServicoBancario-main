@@ -1,0 +1,11 @@
+
+V
+java:S1118":Add a private constructor to hide the implicit public one.(ˆ¦†p8”°êœã1
+™
+java:S11724"wRemove these unused method parameters "nome", "cpf", "dataNascimento", "email", "pais", "telefone", "dadosFinanceiros".( Âæàúÿÿÿÿ8­¢ã1
+L
+java:S14816"/Remove this unused "predicates" local variable.(¹Õ²Ï8®¢ã1
+q
+java:S1128"ORemove this unused import 'com.amandaramos.repository.ClientesBancoRepository'.(ïÃ™Çüÿÿÿÿ8ûîèã1
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8ûîèã1

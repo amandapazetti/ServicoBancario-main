@@ -1,0 +1,33 @@
+
+Q
+java:S3740""/Provide the parametrized type for this generic.(ÿÎŸÜıÿÿÿÿ8ÏÏÔ›ã1
+L
+java:S3740)"/Provide the parametrized type for this generic.(äˆ£8ÏÏÔ›ã1
+R
+java:S3740"/Provide the parametrized type for this generic.(×ü·ÿşÿÿÿÿ8ÏÏÔ›ã1
+M
+java:S3740…"/Provide the parametrized type for this generic.(‚£8ÏÏÔ›ã1
+^	java:S107)"BConstructor has 10 parameters, which is greater than 7 authorized.(äˆ£8ÙÏÔ›ã1
+`
+java:S1128">Remove this unused import 'com.amandaramos.entity.Transacoes'.(·Òå»øÿÿÿÿ8™ñ¡ã1
+T
+java:S1128"7Remove this unused import 'io.swagger.annotations.Api'.(·¦°Î8™ñ¡ã1
+E
+java:S1128"#Remove this unused import 'lombok'.(â—‡‘şÿÿÿÿ8™ñ¡ã1
+n
+java:S1128"LRemove this unused import 'org.springframework.data.annotation.CreatedDate'.(Éå¥°ÿÿÿÿÿ8™ñ¡ã1
+n
+java:S1128"QRemove this unused import 'org.springframework.data.annotation.LastModifiedDate'.(Æğ¼‰8™ñ¡ã1
+U
+java:S1128
+"3Remove this unused import 'javax.validation.Valid'.(æ¤ñ÷úÿÿÿÿ8šñ¡ã1
+f
+java:S1128"IRemove this unused import 'javax.validation.constraints.FutureOrPresent'.(÷Î¯ş8šñ¡ã1
+d
+java:S1128"BRemove this unused import 'javax.validation.constraints.NotBlank'.(µã‡ıÿÿÿÿ8šñ¡ã1
+[
+java:S1128">Remove this unused import 'javax.validation.constraints.Past'.(©¨Á8šñ¡ã1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8šñ¡ã1
+K
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8šñ¡ã1
