@@ -1,6 +1,5 @@
 package com.amandaramos.controller;
 
-import Utils.PageableUtils;
 import com.amandaramos.dto.UsuariosDTO;
 import com.amandaramos.service.impl.UsuarioServiceInterface;
 import io.swagger.annotations.Api;
