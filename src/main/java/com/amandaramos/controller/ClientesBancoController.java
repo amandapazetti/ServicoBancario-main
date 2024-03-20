@@ -1,5 +1,6 @@
 package com.amandaramos.controller;
 
+import com.amandaramos.Utils.PageableUtils;
 import com.amandaramos.dto.ClientesBancoDTO;
 import com.amandaramos.service.impl.ClientesBancoServiceInterface;
 import io.swagger.annotations.*;
@@ -50,12 +51,7 @@ public class ClientesBancoController {
             @RequestParam(defaultValue = "id") String sort,
             @RequestParam(defaultValue = "asc") String order
     ) {
-        Pageable pageable;
-        if (sort != null) {
-            pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
-        } else {
-            pageable = PageRequest.of(page, size);
-        }
+        Pageable pageable = PageableUtils.buildPageable(page, size, sort, order);
         Page<ClientesBancoDTO> clientesPage = clientesBancoService.buscarTodosClientesPaginado(pageable);
         return ResponseEntity.ok(clientesPage);
     }

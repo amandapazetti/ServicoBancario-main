@@ -1,5 +1,6 @@
 package com.amandaramos.controller;
 
+import com.amandaramos.Utils.PageableUtils;
 import com.amandaramos.dto.TransacoesRequestDTO;
 import com.amandaramos.dto.TransacoesResponseDTO;
 import com.amandaramos.service.impl.TransacoesServiceInterface;
@@ -53,12 +54,7 @@ public class TransacoesController {
             @RequestParam(defaultValue = "id") String sort,
             @RequestParam(defaultValue = "asc") String order
     ) {
-        Pageable pageable;
-        if (sort != null) {
-            pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
-        } else {
-            pageable = PageRequest.of(page, size);
-        }
+        Pageable pageable = PageableUtils.buildPageable(page, size, sort, order);
         Page<TransacoesResponseDTO> transacoesPage = transacoesService.buscarTodasTransacoesPaginado(pageable);
         return ResponseEntity.ok(transacoesPage);
     }
