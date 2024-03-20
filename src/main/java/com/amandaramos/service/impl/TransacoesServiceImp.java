@@ -7,6 +7,10 @@ import com.amandaramos.entity.ClientesBanco;
 import com.amandaramos.entity.Transacoes;
 import com.amandaramos.repository.ClientesBancoRepository;
 import com.amandaramos.repository.TransacoesRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,11 +47,10 @@ public class TransacoesServiceImp implements TransacoesServiceInterface {
         return convertToDTO(savedTransacao);
     }
 
-    public List<TransacoesResponseDTO> buscarTodasTransacoes() {
-        List<Transacoes> transacoesList = transacoesRepository.findAll();
-        return transacoesList.stream().map(this::convertToDTO).collect(Collectors.toList());
+    public Page<TransacoesResponseDTO> buscarTodasTransacoesPaginado(Pageable pageable) {
+        Page<Transacoes> transacoesPage = transacoesRepository.findAll(pageable);
+        return transacoesPage.map(this::convertToDTO);
     }
-
 
     public Optional<TransacoesResponseDTO> listarTransacaoPorId(Long id) {
         Optional<Transacoes> transacoesOptional = transacoesRepository.findById(id);

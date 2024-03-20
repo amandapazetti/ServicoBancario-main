@@ -1,5 +1,6 @@
 package com.amandaramos.controller;
 
+import Utils.PageableUtils;
 import com.amandaramos.dto.ClientesBancoDTO;
 import com.amandaramos.service.impl.ClientesBancoServiceInterface;
 import io.swagger.annotations.*;
@@ -11,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -51,10 +51,16 @@ public class ClientesBancoController {
             @RequestParam(defaultValue = "id") String sort,
             @RequestParam(defaultValue = "asc") String order
     ) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
+        Pageable pageable;
+        if (sort != null) {
+            pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
+        } else {
+            pageable = PageRequest.of(page, size);
+        }
         Page<ClientesBancoDTO> clientesPage = clientesBancoService.buscarTodosClientesPaginado(pageable);
         return ResponseEntity.ok(clientesPage);
     }
+
 
     @ApiOperation(value = "Atualizar Cliente por Id")
     @PutMapping("/cliente/{id}")

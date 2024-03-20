@@ -4,6 +4,10 @@ import com.amandaramos.dto.ClientesBancoDTO;
 import com.amandaramos.entity.ClientesBanco;
 import com.amandaramos.entity.DadosFinanceiros;
 import com.amandaramos.repository.ClientesBancoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -41,9 +45,9 @@ public class ClientesBancoServiceImpl implements ClientesBancoServiceInterface {
         return convertToDTO(savedClienteBanco);
     }
 
-    public List<ClientesBancoDTO> buscarTodosClientes() {
-        List<ClientesBanco> clientesList = clientesBancoRepository.findAll();
-        return clientesList.stream().map(this::convertToDTO).collect(Collectors.toList());
+    public Page<ClientesBancoDTO> buscarTodosClientesPaginado(Pageable pageable) {
+        Page<ClientesBanco> clientesPage = clientesBancoRepository.findAll(pageable);
+        return clientesPage.map(this::convertToDTO);
     }
 
 

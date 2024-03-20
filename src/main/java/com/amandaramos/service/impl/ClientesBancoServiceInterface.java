@@ -20,4 +20,4 @@ public interface ClientesBancoServiceInterface {
 
     Page<ClientesBancoDTO> buscarTodosClientesPaginado(Pageable pageable);
 
-}
+   }

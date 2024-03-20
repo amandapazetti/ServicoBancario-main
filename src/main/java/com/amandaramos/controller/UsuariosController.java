@@ -1,5 +1,6 @@
 package com.amandaramos.controller;
 
+import Utils.PageableUtils;
 import com.amandaramos.dto.UsuariosDTO;
 import com.amandaramos.service.impl.UsuarioServiceInterface;
 import io.swagger.annotations.Api;
@@ -12,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -53,10 +54,29 @@ public class UsuariosController {
 
     @ApiOperation(value = "(Lista todos os  Usuarios)")
     @GetMapping
-    public ResponseEntity<Page<UsuariosDTO>> buscarTodosUsuarios(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "asc") String order) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
+    public ResponseEntity<Page<UsuariosDTO>> buscarTodosUsuarios(@RequestParam(defaultValue = "0") int page,
+                                                                 @RequestParam(defaultValue = "10") int size,
+                                                                 @RequestParam(defaultValue = "id") String sort,
+                                                                 @RequestParam(defaultValue = "asc") String order) {
+        Pageable pageable;
+        if (sort != null) {
+            pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
+        } else {
+            pageable = PageRequest.of(page, size);
+        }
         Page<UsuariosDTO> usuariosPage = usuariosService.buscarTodosUsuariosPaginado(pageable);
         return ResponseEntity.ok(usuariosPage);
     }
-}
 
+    @ApiOperation(value = "(Atualiza um Usuário)")
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuariosDTO> atualizarUsuario(@PathVariable Long id, @RequestBody UsuariosDTO usuariosDTOAtualizado) {
+        try {
+            UsuariosDTO usuarioAtualizado = usuariosService.atualizarUsuario(id, usuariosDTOAtualizado);
+            return ResponseEntity.ok(usuarioAtualizado);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+}

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface UsuarioServiceInterface {
 
-    List<UsuariosDTO> buscarTodosUsuarios();
+
 
     Optional<UsuariosDTO> buscarUsuarioPorId(Long id);
 
@@ -18,7 +18,6 @@ public interface UsuarioServiceInterface {
     boolean deletarUsuarioPorId(Long id);
 
     UsuariosDTO atualizarUsuario(Long id,  UsuariosDTO usuariosDTOAtualizado);
-
 
     Page<UsuariosDTO> buscarTodosUsuariosPaginado(Pageable pageable);
 

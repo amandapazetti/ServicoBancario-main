@@ -53,7 +53,12 @@ public class TransacoesController {
             @RequestParam(defaultValue = "id") String sort,
             @RequestParam(defaultValue = "asc") String order
     ) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
+        Pageable pageable;
+        if (sort != null) {
+            pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(order), sort));
+        } else {
+            pageable = PageRequest.of(page, size);
+        }
         Page<TransacoesResponseDTO> transacoesPage = transacoesService.buscarTodasTransacoesPaginado(pageable);
         return ResponseEntity.ok(transacoesPage);
     }
