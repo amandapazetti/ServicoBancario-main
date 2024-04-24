@@ -2,12 +2,10 @@ package com.amandaramos.service.criteria;
 
 import com.amandaramos.entity.Transacoes;
 import com.amandaramos.repository.TransacoesRepository;
-import com.amandaramos.service.criteria.TransacoesCriteriaServiceInterface;
 import com.amandaramos.specification.TransacoesCriteria;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 @Service
 public class TransacoesCriteriaServiceImpl implements TransacoesCriteriaServiceInterface {
@@ -32,8 +30,8 @@ public class TransacoesCriteriaServiceImpl implements TransacoesCriteriaServiceI
         return transacoesRepository.findAll(spec);
     }
 
-    public List<Transacoes> encontrarTransacoesPorClienteNome(String nomeCliente) {
-        Specification<Transacoes> spec = TransacoesCriteria.porClienteNome(nomeCliente);
+    public List<Transacoes> encontrarTransacoesPorClienteNome(String Cliente) {
+        Specification<Transacoes> spec = TransacoesCriteria.porNomedoCliente(Cliente);
         return transacoesRepository.findAll(spec);
     }
 

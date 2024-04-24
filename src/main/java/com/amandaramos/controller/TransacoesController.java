@@ -9,9 +9,7 @@ import com.amandaramos.service.impl.TransacoesServiceInterface;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -101,6 +99,16 @@ public class TransacoesController {
     @GetMapping("/buscar-por-descrição")
     public ResponseEntity<List<Transacoes>> encontrarTransacoesPorDescrição(@RequestParam String descricao) {
         List<Transacoes> transacoes = transacoesCriteriaService.encontrarTransacoesPorDescricao(descricao);
+        if (transacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transacoes);
+        }
+    }
+    @ApiOperation(value = "Buscar transacoes por nome")
+    @GetMapping("/buscar-por-nome")
+    public ResponseEntity<List<Transacoes>> encontrarTransacoesPorNomeDoCliente(@RequestParam String nome) {
+        List<Transacoes> transacoes = transacoesCriteriaService.encontrarTransacoesPorClienteNome(nome);
         if (transacoes.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {

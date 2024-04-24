@@ -19,7 +19,7 @@ public class TransacoesCriteria {
         return (root, query, builder) -> builder.equal(root.get("descricao"), descricao);
     }
 
-    public static Specification<Transacoes> porClienteNome(String nomeCliente) {
+    public static Specification<Transacoes> porNomedoCliente(String nomeCliente) {
         return (root, query, builder) -> {
             Join<Transacoes, ClientesBanco> clienteJoin = root.join("clientesBanco", JoinType.LEFT);
             return builder.equal(clienteJoin.get("nome"), nomeCliente);
