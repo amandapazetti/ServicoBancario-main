@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,11 +43,22 @@ public class ClientesBancoCriteria {
     }
 
     public static Specification<ClientesBanco> comSaldoNegativo() {
-        return (root, query, builder) -> builder.lessThan(root.get("saldoConta"), 0.0);
+        return (root, query, cb) -> {
+            // Acessando o caminho para dadosFinanceiros e então para saldoConta
+            Expression<Double> saldoContaPath = root.get("dadosFinanceiros").get("saldoConta");
+            // Criando a condição para verificar se o saldoConta é menor que 0.0
+            Predicate saldoNegativoPredicate = cb.lessThan(saldoContaPath, 0.0);
+            return saldoNegativoPredicate;
+        };
     }
-
     public static Specification<ClientesBanco> comSaldoPositivo() {
-        return (root, query, builder) -> builder.greaterThan(root.get("saldoConta"), 0.0);
+        return (root, query, cb) -> {
+            // Acessando o caminho para dadosFinanceiros e então para saldoConta
+            Expression<Double> saldoContaPath = root.get("dadosFinanceiros").get("saldoConta");
+            // Criando a condição para verificar se o saldoConta é maior que 0.0
+            Predicate saldoPositivoPredicate = cb.greaterThan(saldoContaPath, 0.0);
+            return saldoPositivoPredicate;
+        };
     }
 
     public static Specification<ClientesBanco> filtrarClientes(String nome, String cpf, LocalDate dataNascimento, String email, String pais, String telefone, Double dadosFinanceiros) {

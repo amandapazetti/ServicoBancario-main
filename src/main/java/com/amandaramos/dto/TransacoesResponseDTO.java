@@ -1,7 +1,5 @@
 package com.amandaramos.dto;
 
-import lombok.Getter;
-import lombok.Setter;
 
 
 public class TransacoesResponseDTO {

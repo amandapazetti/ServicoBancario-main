@@ -1,16 +1,7 @@
 package com.amandaramos.entity;
 
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Objects;
-
-
 
 @Entity
 public class Usuarios {

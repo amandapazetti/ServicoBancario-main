@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface ClientesBancoRepository extends JpaRepository<ClientesBanco, Long> {
     List<ClientesBanco> findAll(Specification<ClientesBanco> spec);
 
-    Optional<ClientesBanco> findAllById(Long id);
+
 
 
 }

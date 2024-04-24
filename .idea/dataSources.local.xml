@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-233.14808.21">
+  <component name="dataSourceStorageLocal" created-in="IU-241.14494.240">
     <data-source name="ServicoBancario@localhost" uuid="b83169fb-6f97-4b30-9985-e05c5bbdf334">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>postgres</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="ServicoBancario-main@localhost" uuid="592642f1-98fc-4a08-904d-e8192939f8f6">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
       <user-name>postgres</user-name>
       <schema-mapping />

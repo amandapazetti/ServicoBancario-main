@@ -1,16 +1,18 @@
 package com.amandaramos.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.Instant;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -34,10 +36,32 @@ public class ClientesBanco {
     @LastModifiedDate
     private LocalDateTime dataAtualizacao;
     private String usuarioResponsavel;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "clientesBanco", cascade = CascadeType.ALL)
     private List<Transacoes> transacoes;
+
     @Embedded
     private DadosFinanceiros dadosFinanceiros;
+
+    public ClientesBanco() {
+    }
+
+    public ClientesBanco(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String pais, String telefone, String usuarioResponsavel) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.pais = pais;
+        this.telefone = telefone;
+        this.usuarioResponsavel = usuarioResponsavel;
+    }
+
+
+    public Double getSaldoConta() {
+        return (this.dadosFinanceiros != null) ? this.dadosFinanceiros.getSaldoConta() : null;
+    }
 
     public void setSaldoConta(Double saldoConta) {
         if (this.dadosFinanceiros == null) {
@@ -58,25 +82,15 @@ public class ClientesBanco {
     }
 
 
-    public void addTransacao(Transacoes transacoes) {
+    public void addTransacoes(Transacoes transacao) {
 
-        this.transacoes.add(transacoes);
-        transacoes.setClientesBanco(this);
+        if (this.transacoes == null) {
+            this.transacoes = new ArrayList<>();
+        }
+        this.transacoes.add(transacao);
+        transacao.setClientesBanco(this);
     }
 
-    public ClientesBanco() {
-    }
-
-    public ClientesBanco(Long id, String nome, String cpf, LocalDate dataNascimento, String email, String pais, String telefone, String usuarioResponsavel) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.email = email;
-        this.pais = pais;
-        this.telefone = telefone;
-        this.usuarioResponsavel = usuarioResponsavel;
-    }
 
     public ClientesBanco(long id, String nome, String cpf) {
         this.id = id;

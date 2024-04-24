@@ -1,15 +1,9 @@
 package com.amandaramos.dto;
 
-import lombok.Getter;
-import lombok.Setter;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 public class TransacoesRequestDTO {
-
-
-
 
     private double valor;
     private String descricao;

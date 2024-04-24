@@ -1,16 +1,11 @@
 package com.amandaramos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
-import org.hibernate.type.DoubleType;
+
 
 import javax.persistence.*;
-import java.util.Objects;
+
 
 @Entity
 public class Transacoes {

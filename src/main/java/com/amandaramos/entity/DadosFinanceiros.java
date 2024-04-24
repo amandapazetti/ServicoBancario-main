@@ -8,8 +8,7 @@ public class DadosFinanceiros {
 
     private double saldoConta;
 
-    public DadosFinanceiros() {
-        }
+
 
 
     public double getSaldoConta() {

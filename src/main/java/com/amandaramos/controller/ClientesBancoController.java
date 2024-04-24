@@ -2,16 +2,18 @@ package com.amandaramos.controller;
 
 import com.amandaramos.Utils.PageableUtils;
 import com.amandaramos.dto.ClientesBancoDTO;
+import com.amandaramos.entity.ClientesBanco;
+import com.amandaramos.service.criteria.ClienteBancoCriteriaServiceInterface;
 import com.amandaramos.service.impl.ClientesBancoServiceInterface;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,11 +23,13 @@ public class ClientesBancoController {
 
 
     private final ClientesBancoServiceInterface clientesBancoService;
+    private final ClienteBancoCriteriaServiceInterface clienteBancoCriteriaService;
 
-
-    public ClientesBancoController(ClientesBancoServiceInterface clientesBancoService) {
+    public ClientesBancoController(ClientesBancoServiceInterface clientesBancoService, ClienteBancoCriteriaServiceInterface clienteBancoCriteriaService) {
         this.clientesBancoService = clientesBancoService;
+        this.clienteBancoCriteriaService = clienteBancoCriteriaService;
     }
+
 
     @ApiOperation(value = "Criar um novo Cliente")
     @PostMapping
@@ -45,12 +49,7 @@ public class ClientesBancoController {
 
     @ApiOperation(value = "(Listar todos os Clientes do Banco)")
     @GetMapping
-    public ResponseEntity<Page<ClientesBancoDTO>> buscarTodosClientes(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "id") String sort,
-            @RequestParam(defaultValue = "asc") String order
-    ) {
+    public ResponseEntity<Page<ClientesBancoDTO>> buscarTodosClientes(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sort, @RequestParam(defaultValue = "asc") String order) {
         Pageable pageable = PageableUtils.buildPageable(page, size, sort, order);
         Page<ClientesBancoDTO> clientesPage = clientesBancoService.buscarTodosClientesPaginado(pageable);
         return ResponseEntity.ok(clientesPage);
@@ -73,10 +72,97 @@ public class ClientesBancoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarCliente(@PathVariable Long id) {
         boolean deletado = clientesBancoService.deletarCliente(id);
-        if (deletado) {
-            return ResponseEntity.noContent().build();
-        } else {
+        if (!deletado)
             return ResponseEntity.badRequest().build();
+        return ResponseEntity.noContent().build();
+    }
+
+    @ApiOperation(value = "Listar todos os Clientes do Banco")
+    @GetMapping("/buscar-por-nome")
+    public ResponseEntity<List<ClientesBanco>> encontrarClientesPorNome(@RequestParam String nome) {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.encontrarClientesPorNome(nome);
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes por CPF")
+    @GetMapping("/buscar-por-cpf")
+    public ResponseEntity<List<ClientesBanco>> encontrarClientesPorCpf(@RequestParam String cpf) {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.encontrarClientesPorCpf(cpf);
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes por data de nascimento")
+    @GetMapping("/buscar-por-data-nascimento")
+    public ResponseEntity<List<ClientesBanco>> buscarClientesPorDataNascimento(@RequestParam String dataNascimento) {
+        LocalDate data = LocalDate.parse(dataNascimento);
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.buscarClientesPorDataNascimento(data);
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes por email")
+    @GetMapping("/buscar-por-email")
+    public ResponseEntity<List<ClientesBanco>> buscarClientesPorEmail(@RequestParam String email) {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.buscarClientesPorEmail(email);
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes por país")
+    @GetMapping("/buscar-por-pais")
+    public ResponseEntity<List<ClientesBanco>> buscarClientesPorPais(@RequestParam String pais) {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.buscarClientesPorPais(pais);
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes por telefone")
+    @GetMapping("/buscar-por-telefone")
+    public ResponseEntity<List<ClientesBanco>> buscarClientesPorTelefone(@RequestParam String telefone) {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.buscarClientesPorTelefone(telefone);
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes com saldo negativo")
+    @GetMapping("/buscar-com-saldo-negativo")
+    public ResponseEntity<List<ClientesBanco>> buscarClientesComSaldoNegativo() {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.buscarClientesPorSaldoNegativo();
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
+        }
+    }
+
+    @ApiOperation(value = "Buscar clientes com saldo positivo")
+    @GetMapping("/buscar-com-saldo-positivo")
+    public ResponseEntity<List<ClientesBanco>> buscarClientesComSaldoPositivo() {
+        List<ClientesBanco> clientes = clienteBancoCriteriaService.buscarClientesPorSaldoPositivo();
+        if (clientes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(clientes);
         }
     }
 }

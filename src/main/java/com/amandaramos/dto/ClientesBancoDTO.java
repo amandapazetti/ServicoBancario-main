@@ -1,20 +1,11 @@
 package com.amandaramos.dto;
 
-import com.amandaramos.entity.Transacoes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.Api;
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.validation.Valid;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
+
 
 
 public class ClientesBancoDTO {
