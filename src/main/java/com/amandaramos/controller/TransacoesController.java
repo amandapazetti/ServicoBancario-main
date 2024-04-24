@@ -3,6 +3,8 @@ package com.amandaramos.controller;
 import com.amandaramos.Utils.PageableUtils;
 import com.amandaramos.dto.TransacoesRequestDTO;
 import com.amandaramos.dto.TransacoesResponseDTO;
+import com.amandaramos.entity.Transacoes;
+import com.amandaramos.service.criteria.TransacoesCriteriaServiceInterface;
 import com.amandaramos.service.impl.TransacoesServiceInterface;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,9 +27,11 @@ public class TransacoesController {
 
 
     private final TransacoesServiceInterface transacoesService;
+    private final TransacoesCriteriaServiceInterface transacoesCriteriaService;
 
-    public TransacoesController(TransacoesServiceInterface transacoesService) {
+    public TransacoesController(TransacoesServiceInterface transacoesService, TransacoesCriteriaServiceInterface transacoesCriteriaService) {
         this.transacoesService = transacoesService;
+        this.transacoesCriteriaService = transacoesCriteriaService;
     }
 
 
@@ -80,6 +84,17 @@ public class TransacoesController {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @ApiOperation(value = "Buscar transacoes por valores")
+    @GetMapping("/buscar-por-valores")
+    public ResponseEntity<List<Transacoes>> encontrarTransacoesPorValor(@RequestParam double valor) {
+        List<Transacoes> transacoes = transacoesCriteriaService.encontrarTransacoesPorValor(valor);
+        if (transacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transacoes);
         }
     }
 }

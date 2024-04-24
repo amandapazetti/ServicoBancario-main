@@ -3,6 +3,7 @@ package com.amandaramos.controller;
 import com.amandaramos.Utils.PageableUtils;
 import com.amandaramos.dto.ClientesBancoDTO;
 import com.amandaramos.entity.ClientesBanco;
+import com.amandaramos.entity.Transacoes;
 import com.amandaramos.service.criteria.ClienteBancoCriteriaServiceInterface;
 import com.amandaramos.service.impl.ClientesBancoServiceInterface;
 import io.swagger.annotations.*;
@@ -24,6 +25,7 @@ public class ClientesBancoController {
 
     private final ClientesBancoServiceInterface clientesBancoService;
     private final ClienteBancoCriteriaServiceInterface clienteBancoCriteriaService;
+
 
     public ClientesBancoController(ClientesBancoServiceInterface clientesBancoService, ClienteBancoCriteriaServiceInterface clienteBancoCriteriaService) {
         this.clientesBancoService = clientesBancoService;
@@ -165,4 +167,6 @@ public class ClientesBancoController {
             return ResponseEntity.ok(clientes);
         }
     }
+
+
 }
