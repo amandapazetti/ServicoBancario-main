@@ -97,4 +97,14 @@ public class TransacoesController {
             return ResponseEntity.ok(transacoes);
         }
     }
+    @ApiOperation(value = "Buscar transacoes por Descrição")
+    @GetMapping("/buscar-por-descrição")
+    public ResponseEntity<List<Transacoes>> encontrarTransacoesPorDescrição(@RequestParam String descricao) {
+        List<Transacoes> transacoes = transacoesCriteriaService.encontrarTransacoesPorDescricao(descricao);
+        if (transacoes.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transacoes);
+        }
+    }
 }
