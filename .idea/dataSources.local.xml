@@ -11,5 +11,20 @@
       <user-name>postgres</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="ServicoBancario-main@192.168.0.190" uuid="fca7a2a6-19c8-43f4-8481-9929a1aa0106">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>postgres</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="ServicoBancario-main@172.17.0.1" uuid="74602dab-8f69-4843-b913-ff067a7dfb37">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>postgres</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="ServicoBancario-main@172.17.0.2" uuid="4a65d92d-04f4-48c4-922d-e8d0970136da">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>postgres</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>
