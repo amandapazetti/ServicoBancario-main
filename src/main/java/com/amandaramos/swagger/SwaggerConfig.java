@@ -28,12 +28,14 @@ import java.util.ArrayList;
 
         @Bean
         public Docket api() {
+            String baseUrl = "http://54.85.94.71:9007";
             return new Docket(DocumentationType.SWAGGER_2)
                     .select()
                     .apis(RequestHandlerSelectors.basePackage("com.amandaramos.controller"))
                     .paths(PathSelectors.any())
                     .build()
-                    .apiInfo(metaInfo());
+                    .apiInfo(metaInfo())
+                    .host(baseUrl);
         }
 
         private ApiInfo metaInfo() {
